@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 
 const Homepage = () => {
+    console.log('hi kundan')
   return (
     <div>
-      "Welcome to Expense Tracker"
+      welcome to expense tracker
       
-
+      
     </div>
   )
 }

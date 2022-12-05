@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
 
 import classes from "./AuthForm.module.css";
+import AuthContext from "../Store/auth-context";
+import { useContext } from "react";
 
 const AuthForm = () => {
+   const authCntxt =  useContext(AuthContext)
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 

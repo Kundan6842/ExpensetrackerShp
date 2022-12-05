@@ -1,25 +1,18 @@
 import AuthForm from "./Components/Authentication/AuthForm";
+
 import { useContext } from "react";
-import {Switch,Router} from "react-router-dom"
+
 import AuthContext from "./Components/Store/auth-context";
-import Navhead from "./Components/Header/Homepage";
+import Homepage from "./Components/Header/Homepage";
+
 
 function App() {
   const authCntxt = useContext(AuthContext);
-  return (
-    <Layout>
-      <Switch>
-      <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/auth'>
-          <AuthPage />
-        </Route>
-        
-      </Switch>
-    </Layout>
-    
-  );
+  const isLoggedIn = authCntxt.isLoggedIn;
+
+  return <div>
+    {authCntxt.isLoggedIn ? <Homepage /> : <AuthForm />}
+    </div>;
 }
 
 export default App;
