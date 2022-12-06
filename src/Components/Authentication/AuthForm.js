@@ -59,6 +59,7 @@ const AuthForm = () => {
         })
         .then((data) => {
           authCntxt.login(data.idToken);
+          console.log(data.idToken)
         })
         .catch((err) => {
           alert(err.message);
