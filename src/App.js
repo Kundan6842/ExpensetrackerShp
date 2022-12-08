@@ -11,7 +11,7 @@ function App() {
   const isLoggedIn = authCntxt.isLoggedIn;
 
   return <div>
-    {authCntxt.isLoggedIn ? <Homepage /> : <AuthForm />}
+    {isLoggedIn ? <Homepage /> : <AuthForm />}
     </div>;
 }
 
