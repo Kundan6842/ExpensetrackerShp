@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import classes from "./NewHomepage.module.css";
 import AuthContext from "../Store/auth-context";
+import ExpenseForm from "./ExpenseForm";
 
 const NewHomepage = () => {
   const authCntxt = useContext(AuthContext);
@@ -25,6 +26,7 @@ const NewHomepage = () => {
   }
 
   return (
+    <>
     <div className={classes.main}>
       <div>welcome to expense tracker</div>
       <button className={classes.btn} onClick={VerifyEmailHandler}>
@@ -34,6 +36,10 @@ const NewHomepage = () => {
         Logout
       </button>
     </div>
+    <div>
+      <ExpenseForm/>
+    </div>
+    </>
   );
 };
 
