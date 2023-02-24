@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./Homepage.module.css";
 import ContactDetail from "./ContactDetail";
-import AuthContext from "../Store/auth-context";
+
 import NewHomepage from "./NewHomepage";
 
 const Homepage = () => {
-  const authCntxt = useContext(AuthContext);
   const [isShown, setIsShown] = useState(false);
   const [isNewHome, setisNewHome] = useState(false);
 
@@ -26,35 +25,38 @@ const Homepage = () => {
       }
     );
     const data = await response.json();
-    setisNewHome((current)=> !current)
+    setisNewHome((current) => !current);
     setIsShown((current) => !current);
     console.log(data);
   }
 
- 
-
   return (
     <div>
-      {!isNewHome && ( <>
-      {!isShown && (
+      {!isNewHome && (
         <>
-          <div className={classes.main}>
-            <div>welcome to expense tracker</div>
-            <div className={classes.text}>your profile is incomplete</div>
-            <button className={classes.btn} onClick={handleClick}>
-              complete now
-            </button>
+          {!isShown && (
+            <>
+              <div className={classes.main}>
+                <div>welcome to expense tracker</div>
+                <div className={classes.text}>your profile is incomplete</div>
+                <button className={classes.btn} onClick={handleClick}>
+                  complete now
+                </button>
+              </div>
+            </>
+          )}
+          {isShown && (
+            <ContactDetail cancelclk={handleClick} onAddData={addDataHandler} />
+          )}
+        </>
+      )}
+      {isNewHome && (
+        <>
+          <div>
+            <NewHomepage />
           </div>
         </>
       )}
-      {isShown && (
-        <ContactDetail cancelclk={handleClick} onAddData={addDataHandler} />
-      )}
-     
-     </>)}  
-     {isNewHome && (<><div>
-      <NewHomepage/>
-      </div></>)}
     </div>
   );
 };

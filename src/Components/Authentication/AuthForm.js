@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
-
+import { useDispatch } from "react-redux";
 import classes from "./AuthForm.module.css";
-import AuthContext from "../Store/auth-context";
-import { useContext } from "react";
+import { authActions } from "../Store/authreducer";
+//import AuthContext from "../Store/auth-context";
+//import { useContext } from "react";
 
 const AuthForm = () => {
-  const authCntxt = useContext(AuthContext);
+  //const authCntxt = useContext(AuthContext);
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -59,13 +61,15 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCntxt.login(data.idToken);
-        console.log(data.idToken);
+        dispatch(authActions.login({token:data.idToken, email:enteredEmail}))
+       // authCntxt.login(data.idToken);
+       dispatch() 
+       console.log(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
       });
-    console.log("user login succesfully kundan");
+    console.log("user login succesfully");
   };
   const ForgetformHandler=(e)=>{
     setforgetform((current) => !current);
@@ -84,7 +88,7 @@ const AuthForm = () => {
         },
       }
     );
-    const data = await response.json();
+   // const data = await response.json();
 
       console.log('kundan555');
   }
